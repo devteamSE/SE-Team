@@ -1,0 +1,16 @@
+{% extends BASE_TEMPLATE %}
+{% load i18n %}
+
+{% block title %} Recipes | Arkansas Wineries {% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+
+{% block content %}
+<script type="text/javascript">
+    $('input:submit').click(function(){
+        $(this).attr("disabled", "disabled").parent('form').submit();
+    });
+</script>
+{% endblock %}

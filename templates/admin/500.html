@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="/">{% trans 'Home' %}</a>
+> {% trans 'Server error' %}
+</div>
+{% endblock %}
+
+{% block sub_title %}{% trans 'Server error (500)' %}{% endblock %}
+
+{% block content %}
+<h1>{% trans '<em>(500)</em>' %}</h1>
+<p>{% trans "Dadgummit! That's an error. It's been reported to the site administrators via e-mail and should be fixed shortly. Thanks for your patience." %}</p>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load i18n %}
+<div id="loginLinks">
+    {% if user.is_authenticated %}
+        <ul>
+            <li class="sep"></li>
+{#            this is going to the users profile page#}
+            <li><a href="/user/">{{ user.email }}</a></li>
+            <li class="sep"></li>
+{#            this is going to the home page. still need to add to urls.py to handle this#}
+            <li><a href="/user/logout/">SIGN OUT</a></li>
+            <li class="sep"></li>
+        </ul>
+    {% else %}
+        <ul>
+{#            this is going to the sign in page. still need to add to urls.py to handle this#}
+            <li><a href="/sign-in/">SIGN IN</a></li>
+            <li class="sep"></li>
+        </ul>
+    {% endif %}
+</div>
+
+<script type="text/javascript">
+    function GoTo(lang,url){
+        window.location.replace(window.location.protocol + '//' + url + '/select-language?language=' + lang + '&next=' + window.location.pathname)
+    }
+</script>

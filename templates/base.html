@@ -1,0 +1,79 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>
+            {% block title %}
+                {% if pagetitle %}
+                    {{ pagetitle }}
+                {% else %}
+                    Arkansas Wineries
+                {% endif %}
+            {% endblock %}
+        </title>
+{#        <link rel="stylesheet" type="text/css" href="/style/css/new_main.css" />#}
+{#        {% if IS_AGGREGATOR_SITE %}#}
+{#            <link type="text/css" rel="stylesheet" href="/style/css/loginLinks.css" />#}
+{#        {% else %}#}
+{#            <link type="text/css" rel="stylesheet" href="/site_media/css/public/loginLinks.css" />#}
+{#        {% endif %}#}
+
+        <meta name="robots" content="index,follow" />
+{#        <script type="text/javascript" src="/site_media/js/jquery-1.7.2.min.js"></script>#}
+{#        <script type="text/javascript" src="/site_media/js/jquery-2.0.1.min.js"></script>#}
+{#        <script type="text/javascript" src="/site_media/js/jquery-ui-1.8.custom.min.js"></script>#}
+{#        <script type="text/javascript" src="/site_media/js/jquery.placeholder.js"></script>#}
+{#        <link rel="Stylesheet" media="screen" href="/site_media/css/jquery_theme/jquery-ui-1.8.custom.css" />#}
+        <script>
+            $(document).ready(function(){
+                $('input, textarea').placeholder();
+            });
+        </script>
+        {% block extrahead %}
+        {% endblock %}
+
+        {% block winesHead %}
+        {% endblock %}
+
+        {% block wineriesHead %}
+        {% endblock %}
+
+        {% block recipesHead %}
+        {% endblock %}
+    </head>
+
+    <body id="{%block bodyId%}{% endblock %}" style="z-index:0;">
+        <div style="z-index:5;">
+            <div id="topStrip"></div><div id="topStripShadow"></div>
+        </div>
+        <div id="bodyContentWrapper" style="z-index:897;">
+            <div id="bodyContent" style="z-index:898;">
+                {% block below_header %}
+                    <div style="margin-top:65px;">
+                        {% block BodySection %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+                {% include "login_links.html" %}
+            </div>
+        </div>
+        <div class="clearer"></div>
+        <div id="bottomStrip"></div>
+        {% block extra-script %}{% endblock %}
+
+        <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+            try {
+            var pageTracker = _gat._getTracker("{{ GOOGLE_ANALYTICS_ID }}");
+            pageTracker._trackPageview();
+            } catch(err) {}
+        </script>
+
+    </body>
+</html>

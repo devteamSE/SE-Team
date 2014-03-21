@@ -1,0 +1,35 @@
+{% extends BASE_TEMPLATE %}
+{% load i18n %}
+
+{% block title %} Wines | Arkansas Wineries {% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+
+{% block BodySection %}
+<script type="text/javascript">
+    $('input:submit').click(function(){
+        $(this).attr("disabled", "disabled").parent('form').submit();
+    });
+</script>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Style</th>
+                <th>Rank</th>
+                <th>Updated On</th>
+                <th>Winery</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for wine in Wines %}
+                    <td>{{ wine }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

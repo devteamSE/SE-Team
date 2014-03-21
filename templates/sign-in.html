@@ -1,0 +1,94 @@
+{% extends BASE_TEMPLATE %}
+{% load i18n %}
+
+
+{% block title %} Sign In | Arkansas Wineries {% endblock %}
+{#still need to edit hrefs#}
+
+{% block extrahead %}
+{% endblock %}
+
+
+{% block content %}
+    {% if thankYouMessage %}
+        <div id='thankYouMessage'>
+            <p> {{ thankYouMessage }} </p>
+        </div>
+    {% else %}
+        <div id='signInWrapper'>
+            <div id='introWrapper'>
+                <h2>{% trans "Sign In to your Account" %}</h2>
+            </div>
+            <div class='bigCol'>
+                {% if fail_message %}
+                    <div class="clearer"></div>
+                    <div class='emessage' style="margin:0 auto 10px;text-align: center;font-family: helvetica,arial;">
+                        <div></div>
+                        {{ fail_message }}
+                        <a onclick="hide_message()"><img style="width:20px; height: auto; margin-bottom: 5px;" src="/site_media/images/job_builder/delete-x.png"></a>
+                    </div>
+                {% elif success_message %}
+                    <div class="clearer"></div>
+                    <div class='successmessage' style="margin:0 auto 10px;text-align: center;font-family: helvetica,arial;">
+                        <div><img  style="width:22px; height: auto;" src="/site_media/images/agent/acceptedicon.gif"></div>
+                        {{ success_message }}
+                        <a onclick="hide_message()"><img style="width:20px; height: auto;  margin-bottom: 5px;" src="/site_media/images/job_builder/delete-x.png"></a>
+                    </div>
+                {% endif %}
+                <div class='signInFormWrapper' id="userSignIn">
+                    <form class='signInForm' action="/client/login/" method="post">
+                        <h2>{% trans "Sign In" %}</h2>
+                        <p class='signUpLink'>
+                            <a href='/sign-up'>{% trans "or sign up" %}</a>
+                        </p>
+                        {% if message %}
+                            <div id='formMessage'>
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                        <ul id=formList>
+                            <li class='input'><input id='id_email_user' name="client-email" class='email'></li>
+                            <li class='input'><input type ='password' id='id_password'  name="client-password" class='password'></li>
+                            <li class='submit'>
+                                <input type='submit' value='{% trans "Sign In" %}' class='submit bt_p'>
+                                <a style="cursor:pointer;" onclick="reset_user_password()" target='_blank'>{% trans "I Forgot My Password" %}</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div id="userPasswordReset" class='signInFormWrapper' style="display: none;">
+                    <form id="userPasswordResetForm" action="/user/password_reset/" method="post">
+                        <h2>{% trans "Reset Your Client Password" %}</h2>
+                        <ul>
+                            <li class='input'><input id='id_email_user' name='email' class='email'></li>
+                            <li class='submit'>
+                                <input type='submit' value='{% trans "Reset Password" %}' class='submit bt_p'>
+                                <a style="cursor:pointer;" onclick="reset_user_password()" target='_blank'>{% trans "I Remembered It!" %}</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div id='cmsWrapper'>
+                    {% autoescape off %}
+                        {{ page.body_content }}
+                    {% endautoescape %}
+                </div>
+            </div>
+        {% endif %}
+        <script type="text/javascript">
+            function reset_user_password() {
+                $('#userSignIn').toggle();
+                $('#userPasswordReset').toggle();
+                if ($('#userPasswordReset').is(":visible")) {
+                    $('#userPasswordReset').find('#id_email_user').focus();
+                } else {
+                    $('#userSignIn').find('#id_email_user').focus();
+                }
+            }
+
+            function hide_message(){
+                $('.emessage').hide();
+                $('.successmessage').hide();
+            }
+        </script>
+{% endblock %}
