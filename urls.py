@@ -2,7 +2,6 @@ from django.conf.urls import patterns, include, url
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.contrib import admin
-from django.views.generic import RedirectView
 
 admin.autodiscover()
 
@@ -17,7 +16,8 @@ urlpatterns = patterns('',
 urlpatterns += patterns('views',
                         url(r'^wines/$','wines'),
                         url(r'^wineries/$','wineries'),
-                        url(r'^recipes/$','recipes')
+                        url(r'^recipes/$','recipes'),
+                        url(r'^signin/$','userLogin'),
 )
 
 # urlpatterns += patterns('views',

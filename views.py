@@ -37,3 +37,17 @@ def recipes(request):
 		'Recipes': list(Recipe.objects.all())
 	}
 	return render_to_response('recipe/recipe.html', context, context_instance=RequestContext(request))
+
+def userLogin(request):
+	page = request.session.get('sign_in_page')
+	#check if its post or get
+	#if post send them to page
+	#if get check login info try to log in user.
+	context = {
+		'thankYouMessage':  "Thank you for visiting us. Come back soon!",
+	    'fail_message':     "Server error. Try again later.",
+	    'success_message':  "Logged in.",
+	    'message':          "",
+		'page':             page,
+	}
+	return render_to_response('sign-in.html', context, context_instance=RequestContext(request))
