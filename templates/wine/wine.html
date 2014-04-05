@@ -1,4 +1,8 @@
-{% extends BASE_TEMPLATE %}
+<head>
+<link rel="stylesheet" type="text/css" href="../project.css">
+</head>
+
+<!--{% extends BASE_TEMPLATE %}
 {% load i18n %}
 
 {% block title %} Wines | Arkansas Wineries {% endblock %}
@@ -12,8 +16,9 @@
     $('input:submit').click(function(){
         $(this).attr("disabled", "disabled").parent('form').submit();
     });
-</script>
-    <table>
+</script>-->
+<body>
+    <table id="customTable">
         <thead>
             <tr>
                 <th>Name</th>
@@ -26,10 +31,25 @@
         </thead>
         <tbody>
             <tr>
-                {% for wine in Wines %}
-                    <td>{{ wine }}</td>
-                {% endfor %}
+				<td> <a href ="#">Zinfindel </td>
+				<td> Red </td>
+				<td> something </td>
+				<td> 100 </td>
+				<td> today </td>
+				<td> NWA Winery </td>
+                <!--#{% for wine in Wines %}
+                    <td>{{ wine }}</td> 
+                #{% endfor %}-->
+            </tr>
+			 <tr>
+				<td> <a href ="#">Zinfindel </td>
+				<td> Red </td>
+				<td> something </td>
+				<td> 100 </td>
+				<td> today </td>
+				<td> NWA Winery </td>
             </tr>
         </tbody>
     </table>
-{% endblock %}
+</body>
+<!--{% endblock %}-->

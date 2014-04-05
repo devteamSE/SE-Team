@@ -1,4 +1,8 @@
-{% extends BASE_TEMPLATE %}
+<head>
+<link rel="stylesheet" type="text/css" href="../project.css">
+</head>
+
+<!--{% extends BASE_TEMPLATE %}
 {% load i18n %}
 
 {% block title %} Wineries | Arkansas Wineries {% endblock %}
@@ -12,5 +16,52 @@
     $('input:submit').click(function(){
         $(this).attr("disabled", "disabled").parent('form').submit();
     });
-</script>
-{% endblock %}
+</script>-->
+<body>
+<table id="customTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Address 2</th>
+                <th>City</th>
+                <th>County</th>
+                <th>Postal Code</th>
+				<th>Phone</th>
+				<th>Created On</th>
+				<th>Updated On</th>
+				<th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+				<td> Neumeier Winery </td>
+				<td> 3406 Hwy 186 </td>
+				<td> none </td>
+				<td> Wiederkehr Village </td>
+				<td> Franklin </td>
+				<td> 72821 </td>
+				<td> 479-209-1224 </td>
+				<td> March 15 </td>
+				<td> March 15 </td>
+				<td> none </td>
+                <!--#{% for wine in Wines %}
+                    <td>{{ wine }}</td> 
+                #{% endfor %}-->
+            </tr>
+			 <tr>
+				<td> Neumeier Winery </td>
+				<td> 3406 Hwy 186 </td>
+				<td> none </td>
+				<td> Wiederkehr Village </td>
+				<td> Franklin </td>
+				<td> 72821 </td>
+				<td> 479-209-1224 </td>
+				<td> March 15 </td>
+				<td> March 15 </td>
+				<td> none </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<!--{% endblock %}-->
