@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 					    (r'^favicon\.ico$', RedirectView.as_view(url='/media/images/favicon.ico')),
 					    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 					    url(r'^admin/', include(admin.site.urls)),
-						url(r'^$', RedirectView.as_view(url='/admin/')),
+						# url(r'^$', RedirectView.as_view(url='/admin/')),
 )
 
 urlpatterns += patterns('views',
@@ -18,6 +18,7 @@ urlpatterns += patterns('views',
                         url(r'^wineries/$','wineries'),
                         url(r'^recipes/$','recipes'),
                         url(r'^signin/$','userLogin'),
+                        url(r'^$','baseSite')
 )
 
 # urlpatterns += patterns('views',

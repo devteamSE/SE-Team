@@ -8,48 +8,39 @@
 {% block title %} Wines | Arkansas Wineries {% endblock %}
 
 {% block extrahead %}
-{% endblock %}
-
-
-{% block BodySection %}
-<script type="text/javascript">
+    <script type="text/javascript">
     $('input:submit').click(function(){
         $(this).attr("disabled", "disabled").parent('form').submit();
     });
 </script>
-<body>
-    <table id="customTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Style</th>
-                <th>Rank</th>
-                <th>Updated On</th>
-                <th>Winery</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-				<td> <a href ="#">Zinfindel </td>
-				<td> Red </td>
-				<td> something </td>
-				<td> 100 </td>
-				<td> today </td>
-				<td> NWA Winery </td>
-                <!--#{% for wine in Wines %}
-                    <td>{{ wine }}</td> 
-                #{% endfor %}-->
-            </tr>
-			 <tr>
-				<td> <a href ="#">Zinfindel </td>
-				<td> Red </td>
-				<td> something </td>
-				<td> 100 </td>
-				<td> today </td>
-				<td> NWA Winery </td>
-            </tr>
-        </tbody>
-    </table>
-</body>
-<!--{% endblock %}-->
+{% endblock %}
+
+
+{% block BodySection %}
+    <body>
+        <table id="customTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Style</th>
+                    <th>Rank</th>
+                    <th>Winery</th>
+                    <th>Short Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for wine in Wines %}
+                    <tr>
+                        <td> <a href ="#">{{ wine.name }}</a></td>
+                        <td>{{ wine.wineType }}</td>
+                        <td>{{ wine.wineStyle }}</td>
+                        <td>{{ wine.rank }}</td>
+                        <td>{{ wine.winery }}</td>
+                        <td>{{ wine.shortDesc }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+{% endblock %}

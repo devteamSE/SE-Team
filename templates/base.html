@@ -1,35 +1,35 @@
-<head>
-<link rel="stylesheet" type="text/css" href="../media/css/project.css">
-</head>
-
-<!--{% load i18n %}-->
+{#{% load i18n %}#}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
+        <link type="text/css" rel="stylesheet" href="../media/css/project.css">
+
+	    <title> Wine 'n Dine Arkansas </title>
+    </head>
+
+    <body>
+        <h1> Wine 'n Dine Arkansas </h1>
 	
-	<title> Wine 'n Dine Arkansas </title>
-	<h1> Wine 'n Dine Arkansas </h1>
-	
-	<u1 id="navBar">
-		<li><a href ="wine/wine.html">Wines</a></li>
-		<li><a href ="winery/winery.html">Wineries</a></li>
-		<li><a href ="recipe/recipe.html">Recipes</a></li>
-		<li><a href ="base.html">Sign Out</a></li>
-	</u1>
-		
-		<!-- 
-        <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>
-           {% block title %}
-                {% if pagetitle %}
-                    {{ pagetitle }}
-                {% else %}
-                    Arkansas Wineries
-                {% endif %}
-            {% endblock %}
-        </title>
+	    <u1 id="navBar">
+		    <li><a href ="wine/wine.html">Wines</a></li>
+		    <li><a href ="winery/winery.html">Wineries</a></li>
+		    <li><a href ="recipe/recipe.html">Recipes</a></li>
+	    	<li><a href ="base.html">Sign Out</a></li>
+    	</u1>
+	</body>
+
+{#        <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>#}
+{#        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#        <title>#}
+{#           {% block title %}#}
+{#                {% if pagetitle %}#}
+{#                    {{ pagetitle }}#}
+{#                {% else %}#}
+{#                    Arkansas Wineries#}
+{#                {% endif %}#}
+{#            {% endblock %}#}
+{#        </title>#}
 {#        <link rel="stylesheet" type="text/css" href="/style/css/new_main.css" />#}
 {#        {% if IS_AGGREGATOR_SITE %}#}
 {#            <link type="text/css" rel="stylesheet" href="/style/css/loginLinks.css" />#}
@@ -37,58 +37,56 @@
 {#            <link type="text/css" rel="stylesheet" href="/site_media/css/public/loginLinks.css" />#}
 {#        {% endif %}#}
 
-        <meta name="robots" content="index,follow" />
+{#        <meta name="robots" content="index,follow" />#}
 {#        <script type="text/javascript" src="/site_media/js/jquery-1.7.2.min.js"></script>#}
 {#        <script type="text/javascript" src="/site_media/js/jquery-2.0.1.min.js"></script>#}
 {#        <script type="text/javascript" src="/site_media/js/jquery-ui-1.8.custom.min.js"></script>#}
 {#        <script type="text/javascript" src="/site_media/js/jquery.placeholder.js"></script>#}
 {#        <link rel="Stylesheet" media="screen" href="/site_media/css/jquery_theme/jquery-ui-1.8.custom.css" />#}
-        <script>
-            $(document).ready(function(){
-                $('input, textarea').placeholder();
-            });
-        </script>
-        {% block extrahead %}
-        {% endblock %}
--->
-    </head>
-<!--
-    <body id="{%block bodyId%}{% endblock %}" style="z-index:0;">
-        <div style="z-index:5;">
-            <div id="topStrip"></div><div id="topStripShadow"></div>
-        </div>
-        <div id="bodyContentWrapper" style="z-index:897;">
-            <div id="bodyContent" style="z-index:898;">
-                {% block below_header %}
-                    <div style="margin-top:65px;">
-                        {% block BodySection %}
-                        {% endblock %}
-                    </div>
-                {% endblock %}
-                {% include "login_links.html" %}
-            </div>
-        </div>
-        <div class="clearer"></div>
-        <div id="bottomStrip"></div>
-        {% block extra-script %}{% endblock %}
+{#        <script>#}
+{#            $(document).ready(function(){#}
+{#                $('input, textarea').placeholder();#}
+{#            });#}
+{#        </script>#}
+{#        {% block extrahead %}#}
+{#        {% endblock %}#}
 
-        <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-        </script>
-        <script type="text/javascript">
-            try {
-            var pageTracker = _gat._getTracker("{{ GOOGLE_ANALYTICS_ID }}");
-            pageTracker._trackPageview();
-            } catch(err) {}
-        </script>-->
-	
+    <body id="{%block bodyId%}{% endblock %}" style="z-index:0;">
+{#        <div style="z-index:5;">#}
+{#            <div id="topStrip"></div><div id="topStripShadow"></div>#}
+{#        </div>#}
+{#        <div id="bodyContentWrapper" style="z-index:897;">#}
+{#            <div id="bodyContent" style="z-index:898;">#}
+{#                {% block below_header %}#}
+{#                    <div style="margin-top:65px;">#}
+{#                        {% block BodySection %}#}
+{#                        {% endblock %}#}
+{#                    </div>#}
+{#                {% endblock %}#}
+{#                {% include "login_links.html" %}#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="clearer"></div>#}
+{#        <div id="bottomStrip"></div>#}
+{#        {% block extra-script %}{% endblock %}#}
+{##}
+{#        <script type="text/javascript">#}
+{#            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");#}
+{#            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));#}
+{#        </script>#}
+{#        <script type="text/javascript">#}
+{#            try {#}
+{#            var pageTracker = _gat._getTracker("{{ GOOGLE_ANALYTICS_ID }}");#}
+{#            pageTracker._trackPageview();#}
+{#            } catch(err) {}#}
+{#        </script>#}
+	</body>
 	<body>
-	<u2 id="footer">
-		<li><a href ="privacy_policy.html">Privacy Policy</a></li>
-		<li><a href ="terms_of_use.html">Terms of Use</a></li>
-		<li><a href ="#">Contact</a></li>
-	</u2>
+	    <u2 id="footer">
+		    <li><a href ="privacy_policy.html">Privacy Policy</a></li>
+		    <li><a href ="terms_of_use.html">Terms of Use</a></li>
+		    <li><a href ="#">Contact</a></li>
+	    </u2>
 		
     </body>
 </html>

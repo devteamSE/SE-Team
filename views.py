@@ -18,9 +18,13 @@ def err_500(request):
 	return render_to_response('admin/500.html',{},context_instance=RequestContext(request))
 
 
+def baseSite(request):
+	return render_to_response('base.html',{},context_instance=RequestContext(request))
+
+
 def wines(request):
 	context = {
-		'Wines': list(Wine.objects.all())
+		'Wines': list(Wine.objects.all().order_by('name'))
 	}
 	return render_to_response('wine/wine.html', context, context_instance=RequestContext(request))
 

@@ -23,9 +23,15 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 DEVELOPMENT = DEBUG
 
+EMAIL_HOST 			= 'smtp.webfaction.com'
+EMAIL_HOST_USER 	= "seteam_info"
+EMAIL_HOST_PASSWORD = "P@ssw0rd"
+DEFAULT_FROM_EMAIL = 'info@seteam.willdev4food.com'
+SERVER_EMAIL = 'info@seteam.willdev4food.com'
+
 ADMINS = (
     ('Jeremy Welkley', 'jeremy@willdev4food.com'),
-    ('Joshua Fisk', 'jcfisk@email.uark.edu')
+    ('Joshua Fisk', 'jcfisk@email.uark.edu',),
 )
 
 ADMIN_MEDIA_PREFIX = 'admin_media'
