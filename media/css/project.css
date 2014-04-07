@@ -64,6 +64,32 @@ h1
 	color: #D9A3EF;
 }*/
 
+#navBar2
+{
+
+	width: 100%;
+	text-align: right;
+	padding: 0;
+	list-style: none;
+}
+
+#navBar2  a 
+{
+	display: block;
+	padding: 8px 30px;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 12px;
+	color: #7A0029;
+	/*border-right: 1px solid #ccc;*/
+}
+
+#navBar2 li a:hover 
+{
+	/*font-size:22px;*/
+	text-decoration:underline;
+}
+
 #customTable
 {
 	margin-left:auto;
@@ -106,7 +132,12 @@ tr :hover a
 {
 	/*background-color: #91A6A6;*/
 	text-decoration:underline;
-}	
+}
+
+/*form
+{
+	background: 
+*/
 
 #footer 
 {
