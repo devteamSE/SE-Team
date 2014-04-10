@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('views',
                         url(r'^wines/$','wines'),
+                        url(r'^ajax/rate_wine', 'rate_wine'),
                         url(r'^wineries/$','wineries'),
                         url(r'^recipes/$','recipes'),
                         url(r'^signin/$','userLogin'),

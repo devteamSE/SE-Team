@@ -7,7 +7,7 @@
 body 
 {
 	 background-image:url("../images/knitting250px.png");
-	 width:960px; 
+	 width:100%;
 	 padding:100px 0; 
 	 margin:0 auto; 
 	 /*font-family:Calibri, sans-serif;*/
@@ -167,5 +167,31 @@ tr :hover a
 	font-size: 12px;
 }
 
+.rating {
+    overflow: hidden;
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+}
 
+.rating-input {
+    float: right;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+}
 
+.rating:hover .rating-star:hover, .rating:hover .rating-star:hover ~ .rating-star, .rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+}
+
+.rating-star, .rating:hover .rating-star {
+    position: relative;
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('../images/star.gif') 0 -16px;
+}

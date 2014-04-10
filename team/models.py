@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, connection
 from django.contrib.auth.models import User
 
 # TODO - finish GeneralUsers model and basic functions
@@ -39,6 +39,44 @@ class Wine(models.Model):
 	winery      = models.ForeignKey("Winery", blank=True, null=True)
 	shortDesc   = models.TextField(verbose_name="Short Description")
 
+	def store_rating(self, rating, userid):
+		wine_rating = WineRating.objects.get_or_create(wine_id=self.id, user_id=userid)
+		wine_rating.rating = int(rating)
+		wine_rating.save()
+		return
+
+	def refresh_rating(self):
+		sql = """
+			with wine_ratings as (
+				select
+					wine_id, sum(rating) as total_rating, count(rating) as num_ratings
+				from
+					"wineRating"
+			),
+			wine_rating_avgs as (
+				select
+					wine_id, ((total_rating::float/num_ratings::float) * 100) as avg_rating
+				from
+					wine_ratings
+				order by avg_rating desc
+			),
+			wine_rankings as (
+				select
+					wine_id, avg_rating, rank() over (order by avg_rating desc) as wine_rank
+				from
+					wine_rating_avgs
+			)
+			update wine as w
+			set rank = wr.wine_rank
+			from wine_rankings as wr
+			where
+				w.id = wr.id;
+		"""
+		cursor = connection.cursor()
+		cursor.execute(sql)
+		#need to make sure the star widget is working.
+		#need to syncdb and test the star widget, test the refreshing
+
 	class Meta:
 		db_table = 'wine'
 
@@ -72,3 +110,12 @@ class Recipe(models.Model):
 
 	class Meta:
 		db_table = 'recipe'
+
+
+class WineRating(models.Model):
+	wine = models.ForeignKey(Wine,verbose_name="Wine",help_text="Wine")
+	user = models.ForeignKey(GeneralUser,verbose_name="User Id",help_text="User Id")
+	rating = models.IntegerField(blank=False,null=False,default=0,verbose_name="Rating",help_text="Rating")
+
+	class Meta:
+		db_table = 'wineRating'

@@ -3,8 +3,9 @@ from django.template import RequestContext
 from django.conf import settings
 from django.core.context_processors import csrf
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
+import simplejson as json
 from team.forms import *
 
 
@@ -23,10 +24,39 @@ def baseSite(request):
 
 
 def wines(request):
+	wine_list = list(Wine.objects.all().order_by('name'))
+	user = None
+	if request.method == 'POST':
+		if request.user:
+			user = request.user
+		for w in wine_list:
+			w.user_rating = w.winerating_set.get_or_create(user=user)
+
 	context = {
-		'Wines': list(Wine.objects.all().order_by('name'))
+		'Wines':    wine_list,
+	    'user':     user
 	}
+	#Need to see if we are handling user correctly
 	return render_to_response('wine/wine.html', context, context_instance=RequestContext(request))
+
+
+def rate_wine(request):
+	if request.method == 'POST':
+		try:
+			wine = Wine.objects.get(id=request.POST.get('wId', None))
+			user = GeneralUser.objects.get(id=request.POST.get('uId', None))
+			rating = request.POST.get('wine_rating', None)
+			if wine and user and rating:
+				wine_rating = WineRating.objects.get_or_create(wine_id=wine.id, user_id=user.id)
+				wine_rating.rating = int(rating)
+				wine_rating.save()
+				status = {'status_id': 0, 'status_desc': 'Success',}
+			else:
+				status = {'status_id': 1, 'status_desc': 'There was a problem receiving rating',}
+		except:
+			status = {'status_id': -1, 'status_desc': 'There was an error updating users wine rating',}
+		return HttpResponse(json.dumps(status), mimetype='application/json')
+
 
 
 def wineries(request):
@@ -41,6 +71,7 @@ def recipes(request):
 		'Recipes': list(Recipe.objects.all())
 	}
 	return render_to_response('recipe/recipe.html', context, context_instance=RequestContext(request))
+
 
 def userLogin(request):
 	page = request.session.get('sign_in_page')
