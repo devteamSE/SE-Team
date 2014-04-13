@@ -43,14 +43,15 @@ div
 	
 #navBar li 
 {
-	float: left; 
+	display: inline-block;
 	
 }
 
 #navBar  a 
 {
-	display: block;
-	padding: 14px 100px;
+	display: inline-block;
+	text-align: center;
+	padding: 14px 90px;
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 16px;
@@ -139,10 +140,12 @@ tr :hover a
 	text-decoration:underline;
 }
 
-/*form
+form
 {
-	background: 
-*/
+	background: white;
+	width: 500px;
+	height: 400px;
+}
 
 #footer 
 {
