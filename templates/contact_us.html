@@ -1,16 +1,25 @@
 <head>
 <link rel="stylesheet" type="text/css" href="../media/css/project.css">
+<title> Wine 'n Dine Arkansas </title>
 </head>
  
 <h2>Contact Us</h2>
 
-<div>
+<p>
 	We'd love to hear from you!
-</div>
+</p>
 
 <form>
-	Name: <input type ="text" name="name"><br>
-	Email: <input type ="text" name="email"><br>
-	Message: <input type ="text" name="message"><br>
-	<input type="button" value="Submit"/>
+	<label>
+	<span>Name</span><input type ="text" name="name"><br>
+	</label>
+	
+	<label>
+	<span>Email</span><input type ="text" name="email"><br>
+	</label>
+	
+	<label>
+	<span>Message</span><textarea id="message" name="message"></textarea>
+	<input type="submit" value="Submit"/>
+	</label>
 </form>
