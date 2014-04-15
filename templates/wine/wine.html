@@ -29,19 +29,19 @@
 
 {% block BodySection %}
     <body>
-        <table id="customTable">
-            <thead>
+        <div class ="WineTable">
+            <table>
                 <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Style</th>
-                    <th>Rank</th>
-                    <th>Winery</th>
-                    {% if user %} <th>Star Rating</th> {% endif %}
-                    <th>Short Description</th>
+                    <td>Name</td>
+                    <td>Type</td>
+                    <td>Style</td>
+                    <td>Rank</td>
+                    <td>Winery</td>
+                    {% if user %}
+                    <td>Star Rating</td>
+                    {% endif %}
+                    <td>Short Description</td>
                 </tr>
-            </thead>
-            <tbody>
                 {% for wine in Wines %}
                     <tr>
                         <td> <a href ="#">{{ wine.name }}</a></td>
@@ -53,7 +53,7 @@
                         <td>{{ wine.shortDesc }}</td>
                     </tr>
                 {% endfor %}
-            </tbody>
         </table>
+    </div>
     </body>
 {% endblock %}
