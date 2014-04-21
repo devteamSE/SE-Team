@@ -7,7 +7,7 @@
 body 
 {
 	 background-image:url("../images/knitting250px.png");
-	 width:65%;
+	 width:100%;
 	 padding:100px 0; 
 	 margin:0 auto; 
 	 font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -106,6 +106,74 @@ div
 	text-decoration:underline;
 }
 
+#customTable
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:90%;
+	font-size:11px;
+	border-width:1px;
+	border-color:white;
+	border-collapse: collapse;
+	-moz-box-shadow: 10px 10px 5px #888;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	box-shadow: 10px 10px 5px #888;
+	
+}
+
+th{
+	text-align: center;
+	color:#401600;
+	border-width: 3px;
+	padding: 15px;
+	font-size: 14px;
+	border-style:solid;
+	border-color:8D8A8E;
+	border-collapse:collapse;
+}
+
+td
+{
+	border-width: 1px;
+	padding: 10px;
+	border-style: solid;
+	border-color: 8D8A8E;
+	font-size: 12px;
+}
+
+tr
+{
+	text-align: left;
+}
+
+tr:nth-child(even) 
+{
+	background-color: #E0B2C2;
+}
+
+tr:nth-child(odd)
+{
+	background-color: #FFFFFF;
+}
+
+tr:first-child
+{
+	background-color: #5C001F;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:14px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#ffffff;
+}
+
+tr :hover a
+{
+	text-decoration:underline;
+}
+
+/*
 .WineTable 
 {
 	margin:0px;padding:0px;
@@ -133,7 +201,7 @@ div
 {
     border-collapse: collapse;
         border-spacing: 0;
-	width:100%;
+	width:90%;
 	height:100%;
 	margin:0px;padding:0px;
 }
@@ -199,7 +267,7 @@ div
 }
 .WineTable tr:first-child td
 {
-		background:-o-linear-gradient(bottom, #ff0000 5%, #ff0000 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff0000), color-stop(1, #ff0000) );
+	background:-o-linear-gradient(bottom, #ff0000 5%, #ff0000 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff0000), color-stop(1, #ff0000) );
 	background:-moz-linear-gradient( center top, #ff0000 5%, #ff0000 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff0000", endColorstr="#ff0000");	background: -o-linear-gradient(top,#ff0000,ff0000);
 
@@ -228,6 +296,7 @@ div
 {
 	border-width:0px 0px 1px 1px;
 }
+*/
 
 form
 {
