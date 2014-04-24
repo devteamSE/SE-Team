@@ -2,13 +2,12 @@ from team.models import GeneralUser, Wine, Winery, Recipe
 from django.contrib import admin
 
 
-# TODO - work on adding each model to admin site.
 class GeneralUserAdmin(admin.ModelAdmin):
 	actions = []
-	list_display = ('name', 'logonCredentials', 'createdOn', 'updatedOn', 'email_opt_in')
-	list_display_links = ('name',)
+	list_display = ('username', 'logonCredentials', 'createdOn', 'updatedOn', 'email_opt_in')
+	list_display_links = ('username',)
 	list_filter = ('createdOn', 'updatedOn', 'email_opt_in',)
-	search_fields = ('=id', 'name',)
+	search_fields = ('=id', 'username',)
 	exclude = ()
 	raw_id_fields = ('logonCredentials',)
 	ordering = ('-id',)

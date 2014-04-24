@@ -1,20 +1,15 @@
 {% load i18n %}
 <div id="loginLinks">
     {% if user.is_authenticated %}
-        <ul>
-            <li class="sep"></li>
-{#            this is going to the users profile page#}
-            <li><a href="/user/">{{ user.email }}</a></li>
-            <li class="sep"></li>
-{#            this is going to the home page. still need to add to urls.py to handle this#}
-            <li><a href="/user/logout/">SIGN OUT</a></li>
+        <ul style="list-style-type: none;">
+            <li><a href="/logout/" style="font-size: 14px;">Sign Out</a></li>
             <li class="sep"></li>
         </ul>
     {% else %}
-        <ul>
-{#            this is going to the sign in page. still need to add to urls.py to handle this#}
-            <li><a href="/sign-in/">SIGN IN</a></li>
+        <ul style="list-style: none;">
+            <li><a href="/login/" style="font-size: 14px;">Sign In</a></li>
             <li class="sep"></li>
+            <li><a href="/sign-up/" style="font-size: 14px;">Sign Up</a></li>
         </ul>
     {% endif %}
 </div>

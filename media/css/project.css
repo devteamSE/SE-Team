@@ -8,7 +8,7 @@ body
 {
 	 background-image:url("../images/knitting250px.png");
 	 width:100%;
-	 padding:100px 0; 
+	 padding:50px 0;
 	 margin:0 auto; 
 	 font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
@@ -20,28 +20,6 @@ h1
 	text-align: center;
 	
 }
-recipe.ingredient
-{
-	 width:65%;
-	 padding:100px 0; 
-	 margin:0 auto; 
-	 font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-	 text-align:center;
-	 list-style-type:square;
-}
-recipe.instructions
-{
-	 width:65%;
-	 padding:100px 0; 
-	 margin:0 auto; 
-	 font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-	 text-align:left;
-	 list-style-type:decimal;
-}
-div
-{
-	margin-left: 3em;
-}
 
 #navBar 
 {
@@ -49,7 +27,7 @@ div
 	width: 100%;
 	float: left;
 	text-align: center;
-	margin: 0 0 3em 0;
+	margin: 0 0 2em 0;
 	padding: 0;
 	list-style: none;
 	border-bottom: 1px solid #181818; 
@@ -80,7 +58,7 @@ div
 
 #navBar li a:visited
 {
-	color: #D9A3EF;
+	color: #7A0029;
 }
 
 #navBar2
@@ -106,80 +84,19 @@ div
 	text-decoration:underline;
 }
 
-#customTable
+#navBar2 li a:visited
 {
-	margin-left:auto;
-	margin-right:auto;
-	width:90%;
-	font-size:11px;
-	border-width:1px;
-	border-color:white;
-	border-collapse: collapse;
-	-moz-box-shadow: 10px 10px 5px #888;
-	-webkit-box-shadow: 10px 10px 5px #888;
-	box-shadow: 10px 10px 5px #888;
-	
+	color: #7A0029;
 }
 
-th{
-	text-align: center;
-	color:#401600;
-	border-width: 3px;
-	padding: 15px;
-	font-size: 14px;
-	border-style:solid;
-	border-color:8D8A8E;
-	border-collapse:collapse;
-}
-
-td
-{
-	border-width: 1px;
-	padding: 10px;
-	border-style: solid;
-	border-color: 8D8A8E;
-	font-size: 12px;
-}
-
-tr
-{
-	text-align: left;
-}
-
-tr:nth-child(even) 
-{
-	background-color: #E0B2C2;
-}
-
-tr:nth-child(odd)
-{
-	background-color: #FFFFFF;
-}
-
-tr:first-child
-{
-	background-color: #5C001F;
-	border:0px solid #000000;
-	text-align:center;
-	border-width:0px 0px 1px 1px;
-	font-size:14px;
-	font-family:Arial;
-	font-weight:bold;
-	color:#ffffff;
-}
-
-tr :hover a
-{
-	text-decoration:underline;
-}
-
-/*
-.WineTable 
+.WineTable, .WineriesTable
 {
 	margin:0px;padding:0px;
 	width:100%;
 	box-shadow: 10px 10px 5px #888888;
 	border:1px solid #000000;
+    border-collapse: collapse;
+
 
 	-moz-border-radius-bottomleft:0px;
 	-webkit-border-bottom-left-radius:0px;
@@ -197,106 +114,90 @@ tr :hover a
 	-webkit-border-top-left-radius:0px;
 	border-top-left-radius:0px;
 }
-.WineTable table
+.WineTable table, .WineriesTable table
 {
     border-collapse: collapse;
-        border-spacing: 0;
-	width:90%;
+    border-spacing: 0;
+	width:100%;
 	height:100%;
 	margin:0px;padding:0px;
 }
-.WineTable tr:last-child td:last-child 
+.WineTable tr:last-child, .WineTable td:last-child, .WineriesTable tr:last-child, .WineriesTable td:last-child
 {
 	-moz-border-radius-bottomright:0px;
 	-webkit-border-bottom-right-radius:0px;
 	border-bottom-right-radius:0px;
 }
-.WineTable table tr:first-child td:first-child 
-{
-	-moz-border-radius-topleft:0px;
-	-webkit-border-top-left-radius:0px;
-	border-top-left-radius:0px;
-}
-.WineTable table tr:first-child td:last-child 
+.WineTable table, .WineTable thead, .WineTable th:first-child,.WineriesTable table, .WineriesTable thead, .WineriesTable th:first-child
 {
 	-moz-border-radius-topright:0px;
 	-webkit-border-top-right-radius:0px;
 	border-top-right-radius:0px;
 }
-.WineTable tr:last-child td:first-child
+.WineTable tr:last-child, .WineTable td:first-child,.WineriesTable tr:last-child, .wineriestable td:first-child
 {
 	-moz-border-radius-bottomleft:0px;
 	-webkit-border-bottom-left-radius:0px;
 	border-bottom-left-radius:0px;
-}.WineTable tr:hover td{
-
 }
-.WineTable tr:nth-child(odd)
+.WineTable tr:nth-child(odd), .WineriesTable tr:nth-child(odd)
 { 
 	background-color:#ffc9c9; 
 }
-.WineTable tr:nth-child(even)    
+.WineTable tr:nth-child(even), .WineriesTable tr:nth-child(even)
 { 
 	background-color:#ffffff; 
 }
-.WineTable td
+.WineTable td, .WineriesTable td
 {
 	vertical-align:middle;
-
-
 	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:13px;
-	font-size:10px;
+	font-size:16px;
 	font-family:Arial;
-	font-weight:bold;
 	color:#000000;
 }
-.WineTable tr:last-child td
+.WineTable tr:last-child, .WineTable td,.WineriesTable tr:last-child, .WineriesTable td
 {
 	border-width:0px 1px 0px 0px;
 }
-.WineTable tr td:last-child
+.WineTable tr, .WineTable td:last-child, .WineriesTable tr, .WineriesTable td:last-child
 {
 	border-width:0px 0px 1px 0px;
 }
-.WineTable tr:last-child td:last-child
+.WineTable tr:last-child, .winetable td:last-child, .WineriesTable tr:last-child, .WineriesTable td:last-child
 {
 	border-width:0px 0px 0px 0px;
 }
-.WineTable tr:first-child td
+.WineTable thead, .WineTable th, .WineriesTable thead, .WineriesTable th
 {
-	background:-o-linear-gradient(bottom, #ff0000 5%, #ff0000 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff0000), color-stop(1, #ff0000) );
-	background:-moz-linear-gradient( center top, #ff0000 5%, #ff0000 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff0000", endColorstr="#ff0000");	background: -o-linear-gradient(top,#ff0000,ff0000);
+	background:-o-linear-gradient(bottom, #b22222 5%, #b22222 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b22222), color-stop(1, #b22222) );
+	background:-moz-linear-gradient( center top, #b22222 5%, #b22222 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#b22222", endColorstr="#b22222");	background: -o-linear-gradient(top,#b22222,#b22222);
 
-	background-color:#ff0000;
+	background-color:#b22222;
 	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
 	font-size:14px;
 	font-family:Arial;
-	font-weight:bold;
 	color:#ffffff;
 }
-.WineTable tr:first-child:hover td
+.WineTable th, .WineTable td, .WineriesTable th, .WineriesTable td
 {
-	background:-o-linear-gradient(bottom, #ff0000 5%, #ff0000 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff0000), color-stop(1, #ff0000) );
-	background:-moz-linear-gradient( center top, #ff0000 5%, #ff0000 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff0000", endColorstr="#ff0000");	background: -o-linear-gradient(top,#ff0000,ff0000);
-
-	background-color:#ff0000;
+    padding: 10px;
+    border-width: 0px 1px 1px 0px;
 }
-.WineTable tr:first-child td:first-child
+.WineTable tr:first-child, .WineTable td:first-child,.WineriesTable tr:first-child, .WineriesTable td:first-child
 {
-	border-width:0px 0px 1px 0px;
+	border-width:0px 1px 1px 0px;
 }
-.WineTable tr:first-child td:last-child
+.WineTable tr:first-child, .WineTable td:last-child, .WineriesTable tr:first-child, .WineriesTable td:last-child
 {
 	border-width:0px 0px 1px 1px;
 }
-*/
 
 form
 {
@@ -308,23 +209,6 @@ form
 	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-}
-
-input
-{
-	width: 350px;
-	display: block;
-	border: 1px solid #999;
-	height: 25px;
-	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-}
-input[type=submit]
-{
-	width: 100px;
-	right: 20px;
-	bottom: 20px;
 }
 
 textarea#message
@@ -378,22 +262,30 @@ textarea#message
     opacity: 0;
 }
 
-.rating:hover .rating-star:hover, .rating:hover .rating-star:hover ~ .rating-star, .rating-input:checked ~ .rating-star {
-    background-position: 0 0;
-}
-
 .rating-star, .rating:hover .rating-star {
     position: relative;
-    float: right;
+    float: left;
     display: block;
     width: 16px;
     height: 16px;
-    background: url('../images/star.gif') 0 -16px;
+    background: url('http://seteam.willdev4food.com/media/images/star.gif') 0 -16;
+}
+
+.rating-input:checked ~ .rating-star {
+	background-position: 0 0;
+}
+.rating-input:checked + .rating-star{
+	background-position: 0 -16px;
+}
+.rating:hover .rating-star:hover ~ .rating-star{
+    background-position: 0 0;
+}
+.rating:hover .rating-star:hover, .rating:hover .rating-star {
+	background-position: 0 -16px;
 }
 
 #loginLinks ul li a
 {
-    position:absolute;
     top:0;
     right:0;
 }

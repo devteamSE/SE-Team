@@ -1,25 +1,47 @@
-<head>
-<link rel="stylesheet" type="text/css" href="../media/css/project.css">
-<title> Wine 'n Dine Arkansas </title>
-</head>
- 
-<h2>Contact Us</h2>
+{% extends 'base.html' %}
+{% block extrahead %}
+    <style type="text/css">
+        div
+        {
+	        margin-left: 3em;
+        }
+        input
+        {
+            width: 350px;
+            display: block;
+            border: 1px solid #999;
+            height: 25px;
+            -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+        }
+        input[type=submit]
+        {
+            width: 100px;
+            right: 20px;
+            bottom: 20px;
+        }
+    </style>
+{% endblock %}
+{% block BodySection %}
+    <h2>Contact Us</h2>
 
-<p>
-	We'd love to hear from you!
-</p>
+    <p>
+        We'd love to hear from you!
+    </p>
 
-<form>
-	<label>
-	<span>Name</span><input type ="text" name="name"><br>
-	</label>
-	
-	<label>
-	<span>Email</span><input type ="text" name="email"><br>
-	</label>
-	
-	<label>
-	<span>Message</span><textarea id="message" name="message"></textarea>
-	<input type="submit" value="Submit"/>
-	</label>
-</form>
+    <form>
+        <label>
+        <span>Name</span><input type ="text" name="name"><br>
+        </label>
+
+        <label>
+        <span>Email</span><input type ="text" name="email"><br>
+        </label>
+
+        <label>
+        <span>Message</span><textarea id="message" name="message"></textarea>
+        <input type="submit" value="Submit"/>
+        </label>
+    </form>
+{% endblock %}

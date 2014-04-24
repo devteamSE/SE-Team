@@ -1,11 +1,17 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.conf import settings
-from django.core.context_processors import csrf
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import REDIRECT_FIELD_NAME, logout
+import django.contrib.auth
+from django.contrib.sites.models import Site, RequestSite
 from django.http import HttpResponseRedirect, HttpResponse
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from django import forms
+from django.forms.formsets import formset_factory
+import logging
 import simplejson as json
+from team.models import *
 from team.forms import *
 
 
@@ -19,44 +25,66 @@ def err_500(request):
 	return render_to_response('admin/500.html',{},context_instance=RequestContext(request))
 
 
-def baseSite(request):
-	return render_to_response('base.html',{},context_instance=RequestContext(request))
+def main_page(request):
+	return render_to_response('index.html',{},context_instance=RequestContext(request))
+
+
+def contact_us(request):
+	return render_to_response('contact_us.html',{},context_instance=RequestContext(request))
+
+
+def terms_of_use(request):
+	return render_to_response('terms_of_use.html',{},context_instance=RequestContext(request))
+
+
+def privacy_policy(request):
+	return render_to_response('privacy_policy.html',{},context_instance=RequestContext(request))
 
 
 def wines(request):
-	wine_list = list(Wine.objects.all().order_by('name'))
-	user = None
-	if request.method == 'POST':
-		if request.user:
-			user = request.user
-		for w in wine_list:
-			w.user_rating = w.winerating_set.get_or_create(user=user)
-
-	context = {
-		'Wines':    wine_list,
-	    'user':     user
-	}
-	#Need to see if we are handling user correctly
+	wine_list = list(Wine.objects.all().order_by('rank'))
+	context = {}
+	if request.user.is_authenticated and not request.user.is_anonymous:
+		# user = GeneralUser.objects.get(logonCredentials=request.user)
+		context = {
+			'Wines':    wine_list,
+	        'view':     1,
+		}
+	else:
+		context = {
+			'Wines':    wine_list,
+		    'view':     -1,
+		}
 	return render_to_response('wine/wine.html', context, context_instance=RequestContext(request))
 
-
+@csrf_protect
 def rate_wine(request):
+	logging.log(1,"request.method = {0}".format(request.method))
 	if request.method == 'POST':
 		try:
 			wine = Wine.objects.get(id=request.POST.get('wId', None))
-			user = GeneralUser.objects.get(id=request.POST.get('uId', None))
+			uId = request.POST.get('uId', None)
+			if uId:
+				uId = int(uId)
+			else:
+				raise Exception
+			user = GeneralUser.objects.get(logonCredentials_id=uId)
 			rating = request.POST.get('wine_rating', None)
 			if wine and user and rating:
-				wine_rating = WineRating.objects.get_or_create(wine_id=wine.id, user_id=user.id)
+				wine_rating, created = WineRating.objects.get_or_create(wine_id=wine.id, user_id=user.id)
+				wine_rating.save()
 				wine_rating.rating = int(rating)
 				wine_rating.save()
-				status = {'status_id': 0, 'status_desc': 'Success',}
+				wine.refresh_rating()
+				status = {'status_id': 1, 'status_desc': 'Success',}
 			else:
-				status = {'status_id': 1, 'status_desc': 'There was a problem receiving rating',}
-		except:
+				status = {'status_id': -1, 'status_desc': 'There was a problem receiving rating',}
+			return HttpResponse(json.dumps(status))
+		except Exception as e:
 			status = {'status_id': -1, 'status_desc': 'There was an error updating users wine rating',}
-		return HttpResponse(json.dumps(status), mimetype='application/json')
-
+			return HttpResponse(status)
+	else:
+		return HttpResponse(json.dumps({'status_id': -1, 'status_desc': 'There was a problem receiving rating'}))
 
 
 def wineries(request):
@@ -73,16 +101,51 @@ def recipes(request):
 	return render_to_response('recipe/recipe.html', context, context_instance=RequestContext(request))
 
 
-def userLogin(request):
-	page = request.session.get('sign_in_page')
-	#check if its post or get
-	#if post send them to page
-	#if get check login info try to log in user.
+def logout_page(request):
+	"""
+	Redirect all users logging out to the homepage
+	"""
+	logout(request)
+	return HttpResponseRedirect('/')
+
+
+def viewSignUp(request):
+	redirect_to = request.POST.get(REDIRECT_FIELD_NAME, '/')
+	if request.user and request.user.is_authenticated():
+		if request.user:
+			return HttpResponseRedirect('/')
+
+	if request.method == 'POST':
+		userCreationForm = UserCreateForm(data=request.POST)
+
+		if userCreationForm.is_valid():
+			try:
+				user = userCreationForm.save()
+
+				newUser = GeneralUser()
+				#think we are going to just store username instead
+				newUser.username = user.username
+				newUser.logonCredentials = user
+				newUser.save()
+
+				loginUser = django.contrib.auth.authenticate(
+					username=userCreationForm.cleaned_data['username'],
+					password=userCreationForm.cleaned_data['password1'])
+
+				django.contrib.auth.login(request, loginUser)
+			except Exception, e:
+				logging.exception(e)
+			else:
+				#redirecting them to / sends them to homepage
+				return HttpResponseRedirect('/')
+	else:
+		userCreationForm = UserCreateForm()
+
 	context = {
-		'thankYouMessage':  "Thank you for visiting us. Come back soon!",
-	    'fail_message':     "Server error. Try again later.",
-	    'success_message':  "Logged in.",
-	    'message':          "",
-		'page':             page,
+			'message': userCreationForm.non_field_errors() if userCreationForm.non_field_errors() else None,
+	        'userCreateForm': userCreationForm,
 	}
-	return render_to_response('sign-in.html', context, context_instance=RequestContext(request))
+
+	template = "sign_up.html"
+
+	return render_to_response(template, context, context_instance=RequestContext(request))

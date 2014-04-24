@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block BodySection %}
+
+    {% if thankYouMessage %}
+
+        <div id='thankYouMessage'>
+
+            <p> {{ thankYouMessage }} </p>
+
+        </div>
+
+    {% else %}
+
+        <div id='signUpWrapper'>
+
+            <div id='introWrapper'>
+
+                <h2>Sign Up</h2>
+
+            </div>
+
+            {% if IS_AGGREGATOR_SITE %}
+                <div id='leftCol'>
+            {% else %}
+                <div id='leftCol'>
+                    {% autoescape off %}
+                        {{ page.body_content }}
+                    {% endautoescape %}
+                </div>
+
+                <div id='rightCol'>
+            {% endif %}
+                <div id='signUpFormWrapper'>
+
+                    <h2>Sign up today</h2>
+
+                    <form id='signUpForm' action="/sign-up/" method="post"> {% csrf_token %}
+
+                        {% if message %}
+                            <div id='formMessage'>
+                                {{ message }}
+                            </div>
+                        {% endif %}
+
+                        <ul id=formList>
+                            <li class='input'>{{ userCreateForm.username.label }}: &nbsp;&nbsp;&nbsp;&nbsp;{{ userCreateForm.username }}</li>
+
+                            <li class='input'>{{ userCreateForm.email.label }}: &nbsp;&nbsp;&nbsp;&nbsp;{{ userCreateForm.email }}</li>
+
+                            <li class='input'>{{ userCreateForm.password1.label }}: &nbsp;&nbsp;&nbsp;&nbsp;{{ userCreateForm.password1 }}</li>
+
+                            <li class='input'>{{ userCreateForm.password2.label }}: &nbsp;&nbsp;&nbsp;&nbsp;{{ userCreateForm.password2 }}</li>
+
+                            <li id='submit'><input type='submit' value='Sign Up' class='submit bt_p'></li>
+
+                        </ul>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+{#        <div style="align-content: center">#}
+{#            <ul>#}
+{#                <li>{{ userCreateForm.username.label }}: {{ userCreateForm.username }}</li>#}
+{#                <li>{{ userCreateForm.email.label }}: {{ userCreateForm.email }}</li>#}
+{#                <li>{{ userCreateForm.password1.label }}: {{ userCreateForm.password1 }}</li>#}
+{#                <li>{{ userCreateForm.password2.label }}: {{ userCreateForm.password2 }}</li>#}
+{#                <li id='submit'><input type='submit' value='Sign Up' class='submit bt_p'></li>#}
+{#            </ul>#}
+{#        </div>#}
+
+    {% endif %}
+
+{% endblock %}

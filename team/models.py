@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class GeneralUser(models.Model):
 	id                  = models.AutoField(primary_key=True, verbose_name='General User ID')
-	name                = models.CharField(max_length=100, verbose_name="Name")
+	username            = models.CharField(max_length=30, verbose_name="Username")
 	logonCredentials    = models.ForeignKey(User, blank=True, null=True, verbose_name="Logon Credentials")
 	createdOn           = models.DateTimeField(auto_now_add=True, verbose_name="Created On")
 	updatedOn           = models.DateTimeField(auto_now_add=True, verbose_name="Updated On")
@@ -38,6 +38,7 @@ class Wine(models.Model):
 	updatedOn   = models.DateTimeField(auto_now_add=True, verbose_name="Updated On", help_text="Updated On")
 	winery      = models.ForeignKey("Winery", blank=True, null=True)
 	shortDesc   = models.TextField(verbose_name="Short Description")
+	avgRating   = models.FloatField(verbose_name="Average Rating")
 
 	def store_rating(self, rating, userid):
 		wine_rating = WineRating.objects.get_or_create(wine_id=self.id, user_id=userid)
@@ -52,30 +53,33 @@ class Wine(models.Model):
 					wine_id, sum(rating) as total_rating, count(rating) as num_ratings
 				from
 					"wineRating"
+				where
+					rating not in (0)
+				group by wine_id
 			),
 			wine_rating_avgs as (
 				select
-					wine_id, ((total_rating::float/num_ratings::float) * 100) as avg_rating
+					wine_id, (total_rating::float/num_ratings::float) as avg_rating, ((total_rating::float/num_ratings::float) * 100) as avg_rating_rank
 				from
 					wine_ratings
 				order by avg_rating desc
 			),
 			wine_rankings as (
 				select
-					wine_id, avg_rating, rank() over (order by avg_rating desc) as wine_rank
+					wine_id, avg_rating, rank() over (order by avg_rating_rank desc) as wine_rank
 				from
 					wine_rating_avgs
 			)
 			update wine as w
-			set rank = wr.wine_rank
+			set "rank" = wr.wine_rank,
+			"avgRating" = wr.avg_rating
 			from wine_rankings as wr
 			where
-				w.id = wr.id;
+				w.id = wr.wine_id;
+			commit;
 		"""
 		cursor = connection.cursor()
 		cursor.execute(sql)
-		#need to make sure the star widget is working.
-		#need to syncdb and test the star widget, test the refreshing
 
 	class Meta:
 		db_table = 'wine'

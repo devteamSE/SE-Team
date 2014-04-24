@@ -18,8 +18,9 @@ MEDIA_ROOT 			= os.path.join(PROJECT_PARENT, "media/")
 
 STATIC_URL			= '/static/'
 MEDIA_URL 			= '/media/'
+LOGIN_URL           = '/login/'
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEVELOPMENT = DEBUG
 
@@ -196,3 +197,12 @@ LOGGING = {
         },
     }
 }
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+	'django.contrib.auth.context_processors.auth',
+	'django.contrib.messages.context_processors.messages',
+	"django.core.context_processors.request",
+	'django.core.context_processors.debug',
+	'django.core.context_processors.i18n',
+	'team.context_processors.user',
+)

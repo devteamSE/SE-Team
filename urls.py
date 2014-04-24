@@ -8,23 +8,22 @@ admin.autodiscover()
 urlpatterns = patterns('',
 					    # Examples:
 					    (r'^favicon\.ico$', RedirectView.as_view(url='/media/images/favicon.ico')),
-					    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 					    url(r'^admin/', include(admin.site.urls)),
-						# url(r'^$', RedirectView.as_view(url='/admin/')),
+                        (r'^login/$','django.contrib.auth.views.login'),
 )
 
 urlpatterns += patterns('views',
                         url(r'^wines/$','wines'),
-                        url(r'^ajax/rate_wine', 'rate_wine'),
+                        url(r'^ajax/rate_wine/$', 'rate_wine'),
                         url(r'^wineries/$','wineries'),
                         url(r'^recipes/$','recipes'),
-                        url(r'^signin/$','userLogin'),
-                        url(r'^$','baseSite')
+                        url(r'^sign-up/$','viewSignUp'),
+                        url(r'^logout/$', 'logout_page'),
+                        url(r'^contact_us/$','contact_us'),
+                        url(r'^terms_of_use/$','terms_of_use'),
+                        url(r'^privacy_policy/$','privacy_policy'),
+                        url(r'^$','main_page')
 )
-
-# urlpatterns += patterns('views',
-    # (r'^api/do/something/$', 'something'),
-# )
 
 if settings.DEVELOPMENT:
 	urlpatterns += patterns('',

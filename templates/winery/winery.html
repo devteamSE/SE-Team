@@ -1,52 +1,40 @@
-<head>
-<link rel="stylesheet" type="text/css" href="../../media/css/project.css">
-</head>
-
 {% extends "base.html" %}
-{% load i18n %}
-
-{% block title %} Wineries | Arkansas Wineries {% endblock %}
 
 {% block extrahead %}
 {% endblock %}
 
 
-{% block content %}
-<script type="text/javascript">
-    $('input:submit').click(function(){
-        $(this).attr("disabled", "disabled").parent('form').submit();
-    });
-</script>-->
-<body>
-<table id="customTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Address 2</th>
-                <th>City</th>
-                <th>County</th>
-                <th>Postal Code</th>
-				<th>Phone</th>
-				<th>Added On</th>
-				<th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {# for loop start (winery in wineries#}
-            <tr>
-				<td> Neumeier Winery </td> {# winery name #}
-				<td> 3406 Hwy 186 </td>
-				<td> none </td>
-				<td> Wiederkehr Village </td>
-				<td> Franklin </td>
-				<td> 72821 </td>
-				<td> 479-209-1224 </td>
-				<td> March 15 </td>
-				<td> none </td>
-            </tr>
-            {# for loop finish #}
-        </tbody>
-    </table>
-</body>
-<!--{% endblock %}-->
+{% block BodySection %}
+    <body>
+        <table class="WineriesTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Address 2</th>
+                    <th>City</th>
+                    <th>County</th>
+                    <th>Postal Code</th>
+                    <th>Phone</th>
+                    <th>Added On</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for winery in Wineries %}
+                    <tr>
+                        <td>{{ winery.name }}</td>
+                        <td>{{ winery.address1 }}</td>
+                        <td>{{ winery.address2 }}</td>
+                        <td>{{ winery.city }}</td>
+                        <td>{{ winery.county }}</td>
+                        <td>{{ winery.postalCode }}</td>
+                        <td>{{ winery.phone }}</td>
+                        <td>{{ winery.createdOn }}</td>
+                        <td>{{ winery.shortDesc }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+{% endblock %}
